@@ -51,6 +51,10 @@ Leaf fraction hiển thị trong app là tỷ lệ lớp ở nút lá, không đ
 - `screenshots/evaluation.png`
 - `screenshots/dataset-mobile.png`
 
+## Ghi chú đóng gói để triển khai
+
+Trong quá trình đóng gói GitHub, server được cập nhật để đọc biến môi trường `HOST` và `PORT`; mặc định local vẫn là `127.0.0.1:8765`. Đã chạy `python -m py_compile app/server.py` sau thay đổi này. Bộ backend và browser smoke được chạy trước thay đổi cấu hình host; chưa có production deployment.
+
 ## Giới hạn còn lại
 
 - OULAD là dữ liệu ẩn danh lịch sử từ các năm 2013–2014; kết quả không đảm bảo chuyển sang trường, học phần hoặc thời kỳ khác.
