@@ -1,0 +1,287 @@
+{
+  "software": {
+    "python": "3.12.14",
+    "scikit_learn": "1.9.1",
+    "pandas": "3.0.1",
+    "numpy": "2.3.5"
+  },
+  "dataset": "Open University Learning Analytics Dataset (OULAD)",
+  "source_doi": "10.24432/C5KK69",
+  "license": "CC BY 4.0",
+  "label": "Withdrawn versus Pass/Fail/Distinction",
+  "prediction_cutoff_day": 28,
+  "eligibility": "registered by day 28 and not unregistered on/before day 28; missing registration date excluded",
+  "features": [
+    "code_module",
+    "code_presentation",
+    "num_of_prev_attempts",
+    "studied_credits",
+    "clicks_day_0_28",
+    "active_days_day_0_28"
+  ],
+  "categorical_features": [
+    "code_module",
+    "code_presentation"
+  ],
+  "numeric_features": [
+    "num_of_prev_attempts",
+    "studied_credits",
+    "clicks_day_0_28",
+    "active_days_day_0_28"
+  ],
+  "tree_policy": {
+    "criterion": "gini",
+    "max_depth": 8,
+    "class_weight": "balanced",
+    "ccp_alpha_selection": "5-fold grouped CV; simplest candidate within 1 SE of best Withdrawn F1"
+  },
+  "data_counts": {
+    "raw_enrollments": 32593,
+    "eligible_enrollments": 27515,
+    "excluded_missing_registration": 45,
+    "excluded_registered_after_cutoff": 16,
+    "excluded_withdrawn_on_or_before_cutoff": 5055,
+    "positive_withdrawn": 5105,
+    "negative_other_final_results": 22410,
+    "class_values": [
+      "Distinction",
+      "Fail",
+      "Pass",
+      "Withdrawn"
+    ]
+  },
+  "split": {
+    "method": "GroupShuffleSplit",
+    "test_size": 0.2,
+    "random_state": 42,
+    "train_enrollments": 22029,
+    "test_enrollments": 5486,
+    "train_students": 19860,
+    "test_students": 4966,
+    "student_overlap": 0
+  },
+  "baseline_majority_class": 0,
+  "baseline_test": {
+    "accuracy": 0.8146190302588406,
+    "precision_withdrawn": 0.0,
+    "recall_withdrawn": 0.0,
+    "f1_withdrawn": 0.0,
+    "confusion_matrix_labels": [
+      "Not withdrawn",
+      "Withdrawn"
+    ],
+    "confusion_matrix": [
+      [
+        4469,
+        0
+      ],
+      [
+        1017,
+        0
+      ]
+    ]
+  },
+  "unpruned_tree_test": {
+    "accuracy": 0.6141086401749909,
+    "precision_withdrawn": 0.26354256233877904,
+    "recall_withdrawn": 0.6027531956735497,
+    "f1_withdrawn": 0.36673646425366435,
+    "confusion_matrix_labels": [
+      "Not withdrawn",
+      "Withdrawn"
+    ],
+    "confusion_matrix": [
+      [
+        2756,
+        1713
+      ],
+      [
+        404,
+        613
+      ]
+    ]
+  },
+  "pruned_tree_test": {
+    "accuracy": 0.5931461903025884,
+    "precision_withdrawn": 0.25767850019944155,
+    "recall_withdrawn": 0.6352015732546706,
+    "f1_withdrawn": 0.36662883087400683,
+    "confusion_matrix_labels": [
+      "Not withdrawn",
+      "Withdrawn"
+    ],
+    "confusion_matrix": [
+      [
+        2608,
+        1861
+      ],
+      [
+        371,
+        646
+      ]
+    ]
+  },
+  "unpruned_tree": {
+    "depth": 8,
+    "leaves": 207,
+    "nodes": 413
+  },
+  "pruned_tree": {
+    "ccp_alpha": 0.0005895681351223721,
+    "depth": 6,
+    "leaves": 15,
+    "nodes": 29
+  },
+  "cv": {
+    "folds": 5,
+    "method": "StratifiedGroupKFold",
+    "selection_metric": "F1 for Withdrawn",
+    "best_mean_f1": 0.3676058854441703,
+    "one_standard_error_floor": 0.3602417425161241,
+    "selection_rule": "simplest tree (fewest leaves, then depth) within one standard error of best mean F1",
+    "candidates": [
+      {
+        "alpha": 0.0,
+        "depth": 8,
+        "leaves": 207,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 7.741424690962438e-18,
+        "depth": 8,
+        "leaves": 206,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 1.1107857997220558e-16,
+        "depth": 8,
+        "leaves": 206,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 1.5938217345246474e-15,
+        "depth": 8,
+        "leaves": 206,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 2.2869105115304856e-14,
+        "depth": 8,
+        "leaves": 206,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 3.281395638206945e-13,
+        "depth": 8,
+        "leaves": 206,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 4.7083422285892225e-12,
+        "depth": 8,
+        "leaves": 206,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 6.755810327592851e-11,
+        "depth": 8,
+        "leaves": 206,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 9.693639707257562e-10,
+        "depth": 8,
+        "leaves": 206,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 1.3909012571050308e-08,
+        "depth": 8,
+        "leaves": 206,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 1.9957481043657196e-07,
+        "depth": 8,
+        "leaves": 206,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 2.8636184457618874e-06,
+        "depth": 8,
+        "leaves": 205,
+        "mean_cv_f1_withdrawn": 0.35960947332741044,
+        "std_cv_f1": 0.010681767398495681,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 4.1088905884312235e-05,
+        "depth": 8,
+        "leaves": 180,
+        "mean_cv_f1_withdrawn": 0.35972278442851974,
+        "std_cv_f1": 0.01059592950448593,
+        "within_one_standard_error": false,
+        "selected": false
+      },
+      {
+        "alpha": 0.0005895681351223721,
+        "depth": 6,
+        "leaves": 15,
+        "mean_cv_f1_withdrawn": 0.3676058854441703,
+        "std_cv_f1": 0.007364142928046182,
+        "within_one_standard_error": true,
+        "selected": true
+      },
+      {
+        "alpha": 0.008459475336976108,
+        "depth": 0,
+        "leaves": 1,
+        "mean_cv_f1_withdrawn": 0.1534167189425986,
+        "std_cv_f1": 0.12913880794354834,
+        "within_one_standard_error": false,
+        "selected": false
+      }
+    ]
+  },
+  "limitations": [
+    "OULAD records are from 2013\u20132014 and may not represent current students.",
+    "This predicts administrative course withdrawal, not failure or lack of learning.",
+    "A course withdrawal can follow many unobserved causes; this model is support information, not a decision about a student.",
+    "The tree's leaf class fraction is not a calibrated probability.",
+    "Group holdout is by anonymized student ID; generalization to a new institution or time period is not established."
+  ]
+}

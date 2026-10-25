@@ -1,0 +1,70 @@
+{
+  "feature_order": [
+    "code_module",
+    "code_presentation",
+    "num_of_prev_attempts",
+    "studied_credits",
+    "clicks_day_0_28",
+    "active_days_day_0_28"
+  ],
+  "categorical_features": [
+    "code_module",
+    "code_presentation"
+  ],
+  "numeric_features": [
+    "num_of_prev_attempts",
+    "studied_credits",
+    "clicks_day_0_28",
+    "active_days_day_0_28"
+  ],
+  "categories": {
+    "code_module": [
+      "AAA",
+      "BBB",
+      "CCC",
+      "DDD",
+      "EEE",
+      "FFF",
+      "GGG"
+    ],
+    "code_presentation": [
+      "2013B",
+      "2013J",
+      "2014B",
+      "2014J"
+    ]
+  },
+  "numeric_ranges": {
+    "num_of_prev_attempts": {
+      "min": 0.0,
+      "max": 6.0,
+      "integer": true
+    },
+    "studied_credits": {
+      "min": 30.0,
+      "max": 630.0,
+      "integer": true
+    },
+    "clicks_day_0_28": {
+      "min": 0.0,
+      "max": 6211.0,
+      "integer": false
+    },
+    "active_days_day_0_28": {
+      "min": 0.0,
+      "max": 29.0,
+      "integer": true
+    }
+  },
+  "example": {
+    "code_module": "AAA",
+    "code_presentation": "2013J",
+    "num_of_prev_attempts": 0,
+    "studied_credits": 240,
+    "clicks_day_0_28": 303,
+    "active_days_day_0_28": 7
+  },
+  "selected_alpha": 0.0005895681351223721,
+  "dataset_zip_sha256": "f2ed1902616c1fe8d2824d872c0b7d2d72be435bf0124d077044fe4be2c6d3e4",
+  "sklearn_version": "1.9.1"
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nguyên mẫu DSS dùng cây CART để hỗ trợ nhận diện nguy cơ rút khỏi học phần từ dữ liệu OULAD trước ngày 28.">
+  <title>CART Student Risk Lab</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Bỏ qua điều hướng</a>
+  <header class="topbar"><div class="brand"><span class="brand-mark">C</span><span><strong>CART Student Risk Lab</strong><small>DECISION SUPPORT · ACADEMIC PROTOTYPE</small></span></div><div class="header-tag">OULAD · CART / GINI</div></header>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Điều hướng chính">
+      <p class="side-label">KHÔNG GIAN NGHIÊN CỨU</p>
+      <button class="nav active" data-page="overview"><span>01</span>Tổng quan</button>
+      <button class="nav" data-page="predict"><span>02</span>Dự báo nguy cơ</button>
+      <button class="nav" data-page="evaluation"><span>03</span>Đánh giá mô hình</button>
+      <button class="nav" data-page="dataset"><span>04</span>Dữ liệu & giới hạn</button>
+      <div class="side-note"><span class="live-dot"></span><div><b>Local model</b><small id="health">Đang kết nối…</small></div></div>
+      <p class="version">STUDENT SUPPORT · V1</p>
+    </aside>
+    <main id="main" class="main">
+      <section class="page active" id="page-overview">
+        <div class="eyebrow">HỆ HỖ TRỢ QUYẾT ĐỊNH · CART</div>
+        <h1>Từ tín hiệu sớm<br><em>đến hỗ trợ kịp thời.</em></h1>
+        <p class="lede">Nguyên mẫu nghiên cứu dùng cây CART đã huấn luyện để ước lượng nguy cơ một lượt đăng ký sẽ rút khỏi học phần. Mỗi dự báo có thể lần theo điều kiện từ nút gốc đến nút lá.</p>
+        <div class="hero-actions"><button class="primary" data-go="predict">Thử dự báo <span>↗</span></button><button class="text-button" data-go="evaluation">Xem kết quả thực nghiệm</button></div>
+        <div class="stat-row" id="overview-stats"></div>
+        <div class="section-heading"><div><div class="eyebrow">QUY TRÌNH</div><h2>Mô hình đưa ra bằng chứng.<br>Con người chọn cách hỗ trợ.</h2></div><span class="section-index">01 — 03</span></div>
+        <div class="steps"><article><span>01</span><h3>Dữ liệu trước ngày 28</h3><p>Thông tin học tập quan sát được đến hết ngày 28 của kỳ học.</p></article><article><span>02</span><h3>Cây CART đã huấn luyện</h3><p>Gini chọn các phép chia nhị phân; cost-complexity pruning giới hạn kích thước cây.</p></article><article><span>03</span><h3>Giải thích từng nhánh</h3><p>Xem phép so sánh, giá trị đầu vào và nhánh được chọn đến lá dự báo.</p></article></div>
+        <div class="notice"><b>Nguyên mẫu học thuật</b><p>Kết quả chỉ là thông tin hỗ trợ để giảng viên hoặc cố vấn cân nhắc trao đổi với sinh viên. Mô hình không kết luận năng lực, không xác định nguyên nhân và không nên tự động kích hoạt hậu quả cho người học.</p></div>
+      </section>
+      <section class="page" id="page-predict">
+        <div class="eyebrow">02 · STUDENT RISK PREDICTION</div><h1>Đánh giá một<br><em>lượt học phần.</em></h1>
+        <p class="lede">Nhập các đặc trưng đúng với pipeline CART. Dữ liệu minh họa được điền từ một bản ghi huấn luyện ẩn danh; hãy thay bằng giá trị phù hợp trước khi dự báo.</p>
+        <div class="form-layout"><form id="predict-form" class="panel form-panel" novalidate><div class="panel-title"><div><span class="eyebrow">ĐẦU VÀO MÔ HÌNH</span><h2>Thông tin tại ngày 28</h2></div><button type="button" class="quiet" id="reset-example">Nạp ví dụ</button></div><div id="fields" class="fields"></div><div id="form-error" class="error" role="alert"></div><button class="primary submit" type="submit">Chạy CART <span>↗</span></button><p class="microcopy">Không nhập tên, mã sinh viên hoặc thông tin định danh.</p></form>
+          <section class="panel result-panel" aria-live="polite"><div class="eyebrow">KẾT QUẢ & GIẢI THÍCH</div><div id="empty-result" class="empty"><span class="empty-icon">↳</span><h2>Chờ dữ liệu đầu vào</h2><p>Kết quả dự báo và decision path sẽ xuất hiện ở đây.</p></div><div id="prediction-result" hidden></div></section></div>
+      </section>
+      <section class="page" id="page-evaluation">
+        <div class="eyebrow">03 · MODEL EVALUATION</div><h1>Đo lường trước<br><em>khi diễn giải.</em></h1><p class="lede">Các số liệu được sinh từ một lần chạy pipeline trên OULAD, với tập test tách theo sinh viên ẩn danh. Lớp dương là Withdrawn.</p>
+        <div id="eval-summary" class="metric-grid"></div><div class="eval-layout"><div class="panel"><div class="panel-title"><div><span class="eyebrow">TẬP TEST</span><h2>Ma trận nhầm lẫn</h2></div><span class="badge">Actual × Predicted</span></div><div id="confusion" class="matrix"></div><p class="caption">Rows: nhãn thật · columns: dự báo · 0 không rút · 1 rút học phần</p></div><div class="panel"><span class="eyebrow">SO SÁNH CẤU HÌNH</span><h2>Độ phức tạp & tổng quát hóa</h2><div id="model-compare"></div></div></div><div class="panel cv-panel"><span class="eyebrow">CHỌN SIÊU THAM SỐ</span><h2>Cost-complexity pruning trên train</h2><p id="cv-summary"></p><div id="alpha-list"></div></div>
+      </section>
+      <section class="page" id="page-dataset">
+        <div class="eyebrow">04 · DATASET & LIMITATIONS</div><h1>Nguồn dữ liệu,<br><em>ranh giới sử dụng.</em></h1><p class="lede">Một bộ dữ liệu học tập ẩn danh có cấu trúc theo học phần và kỳ mở lớp. Mỗi bản ghi là một lượt đăng ký, không đồng nhất với một cá nhân duy nhất.</p>
+        <div class="data-grid"><article class="panel"><span class="eyebrow">NGUỒN</span><h2>Open University Learning Analytics Dataset</h2><p>OULAD gồm dữ liệu khóa học, sinh viên và tương tác với Virtual Learning Environment trong 7 học phần. Tập dữ liệu công khai theo giấy phép CC BY 4.0.</p><p><a href="https://doi.org/10.24432/C5KK69" target="_blank" rel="noreferrer">UCI dataset · DOI 10.24432/C5KK69 ↗</a></p><p><a href="https://doi.org/10.1038/sdata.2017.171" target="_blank" rel="noreferrer">Bài mô tả dữ liệu · DOI 10.1038/sdata.2017.171 ↗</a></p></article><article class="panel"><span class="eyebrow">ĐỊNH NGHĨA NHÃN</span><h2>Withdrawn so với trạng thái còn lại</h2><p>Withdrawn là nhãn dương. Pass, Fail và Distinction được gộp vào lớp còn lại. Mô hình không dự báo Fail và không xem Withdrawal là bằng chứng của việc học kém.</p></article></div>
+        <div class="panel"><span class="eyebrow">MỐC DỰ BÁO</span><h2>Đến hết ngày 28 kể từ ngày bắt đầu học phần</h2><p>Lượt đăng ký chỉ vào tập đủ điều kiện nếu ngày đăng ký không muộn hơn ngày 28, và chưa có ngày rút tại hoặc trước ngày 28. Thiếu ngày đăng ký thì loại khỏi cohort vì không xác minh được điều kiện. VLE click và số ngày hoạt động được tổng hợp trong các ngày 0–28 inclusive. Thông tin cuối kỳ và ngày rút sau mốc không được đưa vào đặc trưng.</p><div id="feature-chips" class="chips"></div></div>
+        <div class="notice caution"><b>Giới hạn quan trọng</b><ul id="limitations"></ul></div>
+      </section>
+      <footer>ACADEMIC PROTOTYPE · CART hỗ trợ thảo luận, không tự động ra quyết định về sinh viên.</footer>
+    </main>
+  </div>
+  <script src="/app.js" defer></script>
+</body></html>
+
